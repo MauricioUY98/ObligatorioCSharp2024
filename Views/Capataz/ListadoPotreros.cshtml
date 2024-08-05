@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model List<Potrero>
+
+<h1 class="text-center mb-3"> Listado de Potreros</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Capacidad Maxima</th>
+            <th scope="col">Cantidad de Animales</th>
+            <th scope="col">Potencial Precio Venta</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Potrero p in Model)
+        {
+            <tr>
+                <td scope="col">@p.id</td>
+                <td scope="col">@p.Descripcion</td>
+                <td scope="col">@p.CapacidadMax</td>
+                @if(p.Ganado.Count() != 0)
+                {
+                    <td scope="col">@p.Ganado.Count()</td>
+                }
+                else
+                {
+                    <td scope="col">No hay Ganado</td>
+                }
+                <td scope="col">U$D @Sistema.ObtenerInstancia().ObtenerPotencialPrecioVentaPotrero(p)</td>
+            </tr>
+        }
+    </tbody>
+</table>

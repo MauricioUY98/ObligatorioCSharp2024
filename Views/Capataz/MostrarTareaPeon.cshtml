@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model Peon
+
+@if(Model.Tareas.Count() != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha Realizacion</th>
+                <th scope="col">Fecha Cierre</th>
+                <th scope="col">Tarea Completada</th>
+                <th scope="col">Comentario Peon</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Tarea t in Model.Tareas)
+                {
+                <tr>
+                    <td scope="col">@t.id</td>
+                    <td scope="col">@t.Descripcion</td>
+                    <td scope="col">@t.FechaRealizacion.ToString("dd/MM/yyyy")</td>
+                    @if (t.FechaCierre != new DateTime(0001, 01, 01))
+                    {
+                        <td scope="col">@t.FechaCierre.ToString("dd/MM/yyyy")</td>
+                    }
+                    else
+                    {
+                        <td scope="col"></td>
+                    }
+                    @if (t.TareaCompletada == true)
+                    {
+                        <td scope="col">SI</td>
+                    }
+                    else
+                    {
+                        <td scope="col">NO</td>
+                    }
+                    <td scope="col">@t.ComentarioPeon</td>
+                </tr>
+                }
+        </tbody>
+    </table>
+}
+
+@if(Model.Tareas.Count() == 0)
+{
+    <div class="alert alert-success text-center col-6 mx-auto" role="alertdialog">
+        El peon no tiene ninguna Tarea asignada
+    </div>
+}

@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model Peon
+
+<div class="text-center">
+    <h1 class="display-4"> Bienvenido @Model.Nombre</h1>
+</div>
+
+<div class="mb-2 border-0 col-6  mx-auto text-center">
+    <strong><label class="form-label my-4">Tareas del dia:</label></strong>
+    @foreach (Tarea t in Model.Tareas)
+    {
+        @if (t.FechaRealizacion.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy"))
+        {
+            <ul>
+                <li class="text-start">@t.Descripcion</li>
+            </ul>
+        }
+    }
+</div>

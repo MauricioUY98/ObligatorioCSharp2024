@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Granjita</title>
+    <style>
+        .fondo {
+            background-image: url('https://i.pinimg.com/736x/07/ff/16/07ff16721435eafba1508d23abcc4622.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center center; /* Cambia el foco de la imagen */
+            position: relative;
+            height: 500px; /* Ajusta la altura según sea necesario */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+            .fondo h1 {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 3em; /* Ajusta el tamaño del texto según sea necesario */
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Opcional: sombra de texto para mejor legibilidad */
+            }
+    </style>
+</head>
+<body>
+    <div class="row text-center m-0 p-0 fondo">
+        <h1 class="col-12">Granjita</h1>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model List<Ganado>
+
+<form action="/Capataz/ListadoGanados" method="post">
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Tipo</label>
+        <select class="form-select" name="Tipo">
+            <option value="" selected>Todos...</option>
+            <option value="Bovino">Bovino</option>
+            <option value="Ovino">Ovino</option>
+        </select>
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Peso</label>
+        <input type="number" name="Peso" class="form-control" />
+    </div>
+
+    <div class="d-grid gap-2 col-3 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary align">Mostrar Ganado</button>
+    </div>
+</form>
+
+<table class="table mt-2 text-center">
+    <thead>
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Potencial Ganancia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ganado g in Model)
+        {
+            <tr>
+                <td scope="col">@g.Codigo</td>
+                <td scope="col">@g.ObtenerTipoDeGanado()</td>
+                <td scope="col">@g.Raza</td>
+                <td scope="col">@g.PesoActual</td>
+                <td scope="col">@g.Sexo</td>
+                <td scope="col">U$D @Sistema.ObtenerInstancia().ObtenerPrecioPotencialPorId(g.Codigo)</td>
+            </tr>
+        }
+    </tbody>
+</table>

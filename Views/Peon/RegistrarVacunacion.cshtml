@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model List<Ganado>
+
+<h1 class="text-center mb-3">Vacunacion de un Ganado</h1>
+
+@if (TempData["error"] != null && !(bool)TempData["error"])
+{
+    <div class="alert alert-success text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        La vacuna se asigno correctamente.
+    </div>
+}
+
+@if (TempData["error"] != null && (bool)TempData["error"])
+{
+    <div class="alert alert-danger text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        @TempData["MensajeError"]
+    </div>
+}
+
+<table class="table mt-2 text-center">
+    <thead>
+        <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Vacunar Ganado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Ganado g in Model)
+        {
+            <tr>
+                <td scope="col">@g.Codigo</td>
+                <td scope="col">@g.ObtenerTipoDeGanado()</td>
+                <td scope="col">@g.Raza</td>
+                <td scope="col">@g.PesoActual</td>
+                <td scope="col">@g.Sexo</td>
+                @if(g.ValidacionVacuna3Meses(g)){
+                    <td scope="col">@Html.ActionLink("Vacunar", "RealizarVacunacion", "Peon", new { codigo = g.Codigo })</td>
+                }else{
+                    <td scope="col">No disponible</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

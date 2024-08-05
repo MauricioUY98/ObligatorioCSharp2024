@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model Ganado
+
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Codigo</label>
+    </strong>
+    <input class="form-control" value=@Model.Codigo disabled />
+</div>
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Tipo</label>
+    </strong>
+    <input class="form-control" value="@Model.ObtenerTipoDeGanado()" disabled />
+</div>
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Sexo</label>
+    </strong>
+    <input class="form-control" value="@Model.Sexo" disabled />
+</div>
+
+<form action="/Capataz/AsignacionGanadoAPotrero" method="post">
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Potreros</label>
+        <select class="form-select" name="id">
+            <option value="" selected>Seleccione un potrero...</option>
+            @foreach (Potrero p in Sistema.ObtenerInstancia().ListadoPotrerosIncompletos())
+            {
+                <option value="@p.id">@p.Descripcion</option>
+            }
+        </select>
+    </div>
+    <input name="Codigo" value=@Model.Codigo hidden />
+    <div class="d-grid gap-2 col-3 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary align">Asginar a Potrero</button>
+    </div>
+</form>

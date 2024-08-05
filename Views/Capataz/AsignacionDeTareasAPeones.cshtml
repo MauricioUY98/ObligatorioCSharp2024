@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model List<Peon>
+
+<h1 class="text-center mb-3">Asignacion de Tareas a un Peon</h1>
+
+<form action="/Capataz/AsignacionDeTareasAPeones" method="POST">
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Descripcion de la Tarea</label>
+        <input type="text" name="Descripcion" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Peon</label>
+        <select class="form-select" name="Mail">
+            <option value="" selected>Seleccione un peon...</option>
+            @foreach (Peon p in Model)
+            {
+                <option value="@p.Mail">@p.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="d-grid gap-2 col-3 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary align">Agregar</button>
+    </div>
+</form>
+
+@if (TempData["error"] != null && !(bool)TempData["error"])
+{
+    <div class="alert alert-success text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        La tarea se agregó exitosamente.
+    </div>
+}
+
+@if (TempData["error"] != null && (bool)TempData["error"])
+{
+    <div class="alert alert-danger text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        @TempData["MensajeError"]
+    </div>
+}

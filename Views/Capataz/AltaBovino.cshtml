@@ -1,0 +1,93 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+
+<h1 class="text-center">Alta Bovino</h1>
+
+<form action="/Capataz/AltaBovino" method="post">
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Código</label>
+        <input type="text" name="Codigo" class="form-control"/>
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Sexo</label>
+        <select class="form-select" name="Sexo">
+            <option value="" selected>Seleccione una opcion...</option>
+            @foreach (Sexo s in Enum.GetValues(typeof(Sexo))) 
+            {
+                <option value="@s">@s</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Raza</label>
+        <input type="text" name="Raza" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input type="date" name="FechaNacimiento" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Costo de Adquisicion</label>
+        <input type="text" name="CostoAdquisicion" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Costo de Alimentacion</label>
+        <input type="text" name="CostoAlimentacion" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Peso Actual</label>
+        <input type="text" name="PesoActual" class="form-control" />
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Hibrido</label>
+        <select class="form-select" name="HibridoONo">
+            <option value="" selected>Seleccione una opcion...</option>
+            @foreach (Hibrido h in Enum.GetValues(typeof(Hibrido)))
+            {
+                <option value="@h">@h</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Tipo de Alimentacion</label>
+        <select class="form-select" name="TipoAlimentacion">
+            <option value="" selected>Seleccione una opcion...</option>
+            @foreach (Alimentacion a in Enum.GetValues(typeof(Alimentacion)))
+            {
+                <option value="@a">@a</option>
+            }
+        </select>
+    </div>
+
+    <div class="d-grid gap-2 col-3 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary align">Agregar</button>
+    </div>
+</form>
+
+@if(TempData["error"] != null && !(bool)TempData["error"])
+{
+    <div class="alert alert-success text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        Ganado dado de alta Correctamente
+    </div>
+}
+
+@if (TempData["error"] != null && (bool)TempData["error"])
+{
+    <div class="alert alert-danger text-center mb-2 border-0 col-6 d-grid gap-2 mx-auto mt-3" role="alert">
+        @TempData["MensajeError"]
+    </div>
+}

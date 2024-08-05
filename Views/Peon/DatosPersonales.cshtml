@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model Peon
+
+<h1 class="text-center mb-3"> Datos personales</h1>
+
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Nombre</label>
+    </strong>
+    <input class="form-control" value="@Model.Nombre" disabled />
+    <strong>
+        <label class="form-label">Email</label>
+    </strong>
+    <input class="form-control" value="@Model.Mail" disabled />
+    <strong>
+        <label class="form-label">Fecha de Ingreso</label>
+    </strong>
+    <input class="form-control" value="@Model.FechaIngreso.ToString("dd/MM/yyyy")" disabled />
+    <strong>
+        <label class="form-label">Residente</label>
+    </strong>
+    <input class="form-control" value="@Model.Residente" disabled />
+</div>

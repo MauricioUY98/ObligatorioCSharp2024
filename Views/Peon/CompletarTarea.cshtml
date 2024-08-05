@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using Dominio
+@model Tarea
+
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Codigo</label>
+    </strong>
+    <input class="form-control" value=@Model.id disabled />
+</div>
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Tipo</label>
+    </strong>
+    <input class="form-control" value="@Model.Descripcion" disabled />
+</div>
+<div class="mb-2 border-0 col-6  mx-auto">
+    <strong>
+        <label class="form-label">Sexo</label>
+    </strong>
+    <input class="form-control" value="@Model.FechaRealizacion" disabled />
+</div>
+
+<form action="/Peon/CompletarTarea" method="post">
+    <input name="id" value=@Model.id hidden />
+    <div class="mb-2 border-0 col-6  mx-auto">
+        <label class="form-label">Comentario</label>
+        <input type="text" name="ComentarioPeon" class="form-control" />
+    </div>
+    <div class="d-grid gap-2 col-3 mx-auto mt-3">
+        <button type="submit" class="btn btn-primary align">Completar Tarea</button>
+    </div>
+</form>
